@@ -67,16 +67,84 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _popup_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup.css */ "./src/popup/popup.css");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
 
 
 
 const App = () => {
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        (function getData(query) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const cities = yield (0,_utils_api__WEBPACK_IMPORTED_MODULE_3__.fetchCities)(query);
+                const city = cities[0];
+                const aqi = yield (0,_utils_api__WEBPACK_IMPORTED_MODULE_3__.fetchAQI)(city).then(console.log);
+                return aqi;
+            });
+        })("Tehran");
+    });
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: "icon.png" })));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render(react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), root);
+
+
+/***/ }),
+
+/***/ "./src/utils/api.ts":
+/*!**************************!*\
+  !*** ./src/utils/api.ts ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchAQI": () => (/* binding */ fetchAQI),
+/* harmony export */   "fetchCities": () => (/* binding */ fetchCities)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const OPEN_WEATHER_API_KEY = '757946128f459261b0f030d6e88792db';
+function fetchAQI(city) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { lat, lon } = city;
+        const response = yield fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${OPEN_WEATHER_API_KEY}`);
+        if (!response.ok)
+            throw Error(`Oops. Something went wrong. Try again.`);
+        const json = yield response.json();
+        const aqi = yield json.list[0];
+        return aqi;
+    });
+}
+function fetchCities(city) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const queryLimit = 5;
+        const response = yield fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${queryLimit}&appid=${OPEN_WEATHER_API_KEY}`);
+        if (!response.ok)
+            throw Error(`Could not find ${city}. Check spelling.`);
+        const data = yield response.json();
+        return data;
+    });
+}
+
 
 
 /***/ })
