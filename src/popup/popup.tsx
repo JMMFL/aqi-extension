@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import './popup.css'
-import { fetchAQI, fetchCities, OpenWeatherCities, OpenWeatherCity } from '../utils/api'
+import { fetchAQI, fetchCities } from '../utils/api'
 
 const App: React.FC<{}> = () => {
   useEffect(() => {
