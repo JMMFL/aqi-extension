@@ -51,6 +51,94 @@ const OZONE_BREAKPOINTS: Breakpoints = {
   },
 };
 
+const PM25_BREAKPOINTS: Breakpoints = {
+  good: {
+    conLo: 0,
+    conHi: 12,
+    aqiLo: 0,
+    aqiHi: 50,
+  },
+
+  okay: {
+    conLo: 12.1,
+    conHi: 35.4,
+    aqiLo: 51,
+    aqiHi: 100,
+  },
+
+  moderate: {
+    conLo: 35.5,
+    conHi: 55.4,
+    aqiLo: 101,
+    aqiHi: 150,
+  },
+
+  poor: {
+    conLo: 55.5,
+    conHi: 150.4,
+    aqiLo: 151,
+    aqiHi: 200,
+  },
+
+  bad: {
+    conLo: 150.5,
+    conHi: 250.4,
+    aqiLo: 201,
+    aqiHi: 300,
+  },
+
+  hazardous: {
+    conLo: 250.5,
+    conHi: 500.4,
+    aqiLo: 301,
+    aqiHi: 500,
+  },
+};
+
+const PM10_BREAKPOINTS: Breakpoints = {
+  good: {
+    conLo: 0,
+    conHi: 54,
+    aqiLo: 0,
+    aqiHi: 50,
+  },
+
+  okay: {
+    conLo: 55,
+    conHi: 154,
+    aqiLo: 51,
+    aqiHi: 100,
+  },
+
+  moderate: {
+    conLo: 155,
+    conHi: 254,
+    aqiLo: 101,
+    aqiHi: 150,
+  },
+
+  poor: {
+    conLo: 255,
+    conHi: 354,
+    aqiLo: 151,
+    aqiHi: 200,
+  },
+
+  bad: {
+    conLo: 355,
+    conHi: 424,
+    aqiLo: 201,
+    aqiHi: 300,
+  },
+
+  hazardous: {
+    conLo: 425,
+    conHi: 604,
+    aqiLo: 301,
+    aqiHi: 500,
+  },
+};
+
 function checkRange(num: Number, min: Number, max: Number): Boolean {
   return min <= num && num <= max;
 }
@@ -63,4 +151,5 @@ function calculateAQI(conI: number, breakpoints: Breakpoints): Number {
         ((conI - conLo) * (aqiHi - aqiLo)) / (conHi - conLo) + aqiLo
       );
     }
+  }
 }
