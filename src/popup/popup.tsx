@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import './popup.css'
 import { fetchAQI, fetchCities } from '../utils/api'
+import { OZONE, PM25, PM10, calculateAQI } from '../utils/calculator'
 
 const App: React.FC<{}> = () => {
   useEffect(() => {

@@ -14,7 +14,7 @@ interface Breakpoints {
   hazardous: Breakpoint;
 }
 
-const OZONE_BREAKPOINTS: Breakpoints = {
+const OZONE: Breakpoints = {
   good: {
     conLo: 0,
     conHi: 0.054,
@@ -51,7 +51,7 @@ const OZONE_BREAKPOINTS: Breakpoints = {
   },
 };
 
-const PM25_BREAKPOINTS: Breakpoints = {
+const PM25: Breakpoints = {
   good: {
     conLo: 0,
     conHi: 12,
@@ -95,7 +95,7 @@ const PM25_BREAKPOINTS: Breakpoints = {
   },
 };
 
-const PM10_BREAKPOINTS: Breakpoints = {
+const PM10: Breakpoints = {
   good: {
     conLo: 0,
     conHi: 54,
@@ -153,3 +153,5 @@ function calculateAQI(conI: number, breakpoints: Breakpoints): Number {
     }
   }
 }
+
+export { OZONE, PM25, PM10, calculateAQI };
