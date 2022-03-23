@@ -21,7 +21,7 @@ async function fetchAQI(city: OpenWeatherCity): Promise<any> {
   if (!response.ok) throw Error(`Oops. Something went wrong. Try again.`);
 
   const json = await response.json();
-  const aqi = await json.list[0];
+  const concentrations = await json.list[0];
   return aqi;
 }
 
