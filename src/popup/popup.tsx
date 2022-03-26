@@ -1,19 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import './popup.css'
-import { fetchAQI, fetchCities } from '../utils/api'
-import { OZONE, PM25, PM10, calculateAQI } from '../utils/calculator'
+import { AirData, fetchAirData, fetchCities } from '../utils/api'
+import { calculateAQI } from '../utils/calculator'
 
 const App: React.FC<{}> = () => {
+  const [load, setLoad] = useState(true);
+  const [data, setData] = useState<AirData>()
+
   useEffect(() => {
     (async function getData(query: string) {
       const cities = await fetchCities(query);
       const city = cities[0];
-      const aqi = await fetchAQI(city).then(console.log);
-      return aqi
-    })("Tehran");
-  })
+      const data = await fetchAirData(city);
+      setData(data);
+      setLoad(false);
+      return data;
+    })("Kitchener");
+  }, [])
 
+  if (!load) {
+    console.log(data);
+    console.log(calculateAQI(data));
+  }
   return (
     <div>
       <img src="icon.png" />

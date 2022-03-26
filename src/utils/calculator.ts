@@ -1,3 +1,11 @@
+import { AirData } from './api';
+
+interface AQIs {
+  o3: number;
+  pm2_5: number;
+  pm10: number;
+}
+
 interface Breakpoint {
   conLo: number;
   conHi: number;
@@ -51,7 +59,7 @@ const OZONE: Breakpoints = {
   },
 };
 
-const PM25: Breakpoints = {
+const PM2_5: Breakpoints = {
   good: {
     conLo: 0,
     conHi: 12,
@@ -143,15 +151,45 @@ function checkRange(num: Number, min: Number, max: Number): Boolean {
   return min <= num && num <= max;
 }
 
-function calculateAQI(conI: number, breakpoints: Breakpoints): Number {
-  for (const breakpoint of Object.values(breakpoints)) {
-    if (checkRange(conI, breakpoint.conLo, breakpoint.conHi)) {
-      const { conLo, conHi, aqiLo, aqiHi } = breakpoint;
-      return Math.round(
-        ((conI - conLo) * (aqiHi - aqiLo)) / (conHi - conLo) + aqiLo
-      );
+function calculateAQI({ components }: AirData): AQIs {
+  const result = { o3: -1, pm2_5: -1, pm10: -1 };
+  const { o3, pm2_5, pm10 } = components;
+  const inputs = [
+    {
+      pollutant: 'o3',
+      conI: o3 / 1000, //convert to ug/m3
+      breakpoints: OZONE,
+    },
+
+    {
+      pollutant: 'pm2_5',
+      conI: pm2_5,
+      breakpoints: PM2_5,
+    },
+
+    {
+      pollutant: 'pm10',
+      conI: pm10,
+      breakpoints: PM10,
+    },
+  ];
+
+  for (const input of inputs) {
+    const { pollutant, conI, breakpoints } = input;
+
+    for (const breakpoint of Object.values(breakpoints)) {
+      if (checkRange(conI, breakpoint.conLo, breakpoint.conHi)) {
+        const { conLo, conHi, aqiLo, aqiHi } = breakpoint;
+        const aqi = Math.round(
+          ((conI - conLo) * (aqiHi - aqiLo)) / (conHi - conLo) + aqiLo
+        );
+        result[pollutant] = aqi;
+        break;
+      }
     }
   }
+
+  return result;
 }
 
-export { OZONE, PM25, PM10, calculateAQI };
+export { calculateAQI };
