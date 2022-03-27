@@ -1,35 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import './popup.css'
-import { AirData, fetchAirData, fetchCities } from '../utils/api'
-import { calculateAQI } from '../utils/calculator'
+import React, { useState, useEffect, FormEvent } from 'react';
+import ReactDOM from 'react-dom';
+import './popup.css';
+import {
+  AirData,
+  ArrayOfCities,
+  City,
+  fetchAirData,
+  fetchCities,
+} from '../utils/api';
+import { calculateAQI } from '../utils/calculator';
 
 const App: React.FC<{}> = () => {
-  const [load, setLoad] = useState(true);
-  const [data, setData] = useState<AirData>()
+  // const [status, setStatus] = useStat("loading");
+  const [cities, setCities] = useState<ArrayOfCities>([]);
+  const [data, setData] = useState<AirData>();
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    (async function getData(query: string) {
+    async function getData(query: string) {
       const cities = await fetchCities(query);
-      const city = cities[0];
-      const data = await fetchAirData(city);
-      setData(data);
-      setLoad(false);
-      return data;
-    })("Kitchener");
-  }, [])
+      setCities(cities);
+      return cities;
+    }
 
-  if (!load) {
-    console.log(data);
-    console.log(calculateAQI(data));
-  }
+    getData(query);
+  }, [query]);
+
+  const submitQuery = (event: FormEvent) => {
+    const query = event.target['city-search'].value;
+    setQuery(query);
+    event.preventDefault();
+  };
+
+  const submitCity = (event: FormEvent) => {
+    console.log(event);
+    event.preventDefault();
+  };
+
   return (
-    <div>
-      <img src="icon.png" />
-    </div>
-  )
-}
+    <>
+      <form onSubmit={submitQuery}>
+        <label htmlFor="city-search">City Search</label>
+        <input id="city-search" type="search" name="city-search" required />
+      </form>
+      <form onSubmit={submitCity}>
+        {(cities as any).map((city: City) => (
+          <button>{`${city.name}, ${city.country}, ${city.state}`}</button>
+        ))}
+      </form>
+    </>
+  );
+};
 
-const root = document.createElement('div')
-document.body.appendChild(root)
-ReactDOM.render(<App />, root)
+const root = document.createElement('div');
+document.body.appendChild(root);
+ReactDOM.render(<App />, root);
