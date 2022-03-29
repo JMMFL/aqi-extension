@@ -1,8 +1,13 @@
 import React from 'react';
 
-function SearchResult({ city }) {
+function SearchResult({ city, citiesHook }) {
   const saveCity = () => {
-    console.log(city);
+    chrome.storage.local.get(['cities'], (response) => {
+      const cities = response.cities ?? [];
+      cities.push(city);
+      chrome.storage.local.set({ cities });
+      citiesHook(cities);
+    });
   };
 
   return (

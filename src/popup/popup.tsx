@@ -10,22 +10,24 @@ import {
 } from '../utils/api';
 import { calculateAQI } from '../utils/calculator';
 import { SearchSection } from '../sections/SearchSection';
+import { HomeSection } from '../sections/HomeSection';
 
 const App: React.FC<{}> = () => {
-  const [city, setCity] = useState<City>();
-  const [data, setData] = useState<AirData>();
+  const [cities, setCities] = useState<ArrayOfCities>([]);
 
   useEffect(() => {
-    async function getAirData(city: City) {
-      const data = await fetchAirData(city);
-      setData(data);
-      return data;
-    }
+    chrome.storage.local.get(['cities'], (response) => {
+      let savedCities = response.cities ?? [];
+      setCities(savedCities);
+    });
+  }, []);
 
-    getAirData(city);
-  }, [city]);
-
-  return <SearchSection />;
+  return (
+    <>
+      <SearchSection citiesHook={setCities} />
+      <HomeSection cities={cities} citiesHook={setCities} />
+    </>
+  );
 };
 
 const root = document.createElement('div');

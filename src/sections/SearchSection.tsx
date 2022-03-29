@@ -4,7 +4,7 @@ import { SearchBar } from '../components/SearchBar';
 import { ArrayOfCities, City } from '../utils/api';
 import { fetchCities } from '../utils/api';
 
-function SearchSection() {
+function SearchSection({ citiesHook }) {
   const [results, setResults] = useState<ArrayOfCities>([]);
   const [query, setQuery] = useState('');
 
@@ -28,7 +28,7 @@ function SearchSection() {
     <div>
       <SearchBar onSearch={submitQuery} />
       {(results as any).map((city: City) => (
-        <SearchResult city={city} />
+        <SearchResult city={city} citiesHook={citiesHook} />
       ))}
     </div>
   );
