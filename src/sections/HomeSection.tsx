@@ -10,19 +10,6 @@ function HomeSection({ cities, citiesHook }) {
       ))}
     </>
   );
-
-  // const [city, setCity] = useState<City>();
-  // const [data, setData] = useState<AirData>();
-
-  // useEffect(() => {
-  //   async function getAirData(city: City) {
-  //     const data = await fetchAirData(city);
-  //     setData(data);
-  //     return data;
-  //   }
-
-  //   getAirData(city);
-  // }, [city]);
 }
 
 export { HomeSection };
