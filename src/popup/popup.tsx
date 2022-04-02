@@ -22,10 +22,38 @@ const App: React.FC<{}> = () => {
     });
   }, []);
 
+  const changeTab = (event: any) => {
+    const home = document.getElementById('home');
+    const search = document.getElementById('search');
+    const clickedHome = event.target.id === 'home-tab';
+
+    if (clickedHome) {
+      home.classList.remove('hidden');
+      search.classList.add('hidden');
+    } else {
+      home.classList.add('hidden');
+      search.classList.remove('hidden');
+    }
+  };
+
   return (
     <>
-      <SearchSection citiesHook={setCities} />
-      <HomeSection cities={cities} citiesHook={setCities} />
+      <ul>
+        <li id="home-tab" onClick={changeTab}>
+          Home
+        </li>
+        <li id="search-tab" onClick={changeTab}>
+          Search
+        </li>
+      </ul>
+      <div className="content">
+        <div id="home">
+          <HomeSection cities={cities} citiesHook={setCities} />
+        </div>
+        <div id="search" className="hidden">
+          <SearchSection citiesHook={setCities} />
+        </div>
+      </div>
     </>
   );
 };

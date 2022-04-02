@@ -3,3 +3,11 @@ body {
   width: 1000px;
   height: 300px;
 }
+
+#search {
+  /* display: none; */
+}
+
+.hidden {
+  display: none;
+}
