@@ -1,11 +1,18 @@
-body {
-  background-color: white;
-  width: 1000px;
-  height: 300px;
+html {
+  box-sizing: border-box;
 }
 
-#search {
-  /* display: none; */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 375px;
+  height: 475px;  
 }
 
 .hidden {
