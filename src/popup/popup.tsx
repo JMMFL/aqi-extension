@@ -1,16 +1,9 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import ReactDOM from 'react-dom';
 import './popup.css';
-import {
-  AirData,
-  ArrayOfCities,
-  City,
-  fetchAirData,
-  fetchCities,
-} from '../utils/api';
-import { calculateAQI } from '../utils/calculator';
-import { SearchSection } from '../sections/SearchSection';
-import { HomeSection } from '../sections/HomeSection';
+import { ArrayOfCities } from '../utils/api';
+import { SearchSection } from '../components/searchSection';
+import { HomeSection } from '../components/homeSection';
 
 const App: React.FC<{}> = () => {
   const [cities, setCities] = useState<ArrayOfCities>([]);

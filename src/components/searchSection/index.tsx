@@ -1,8 +1,8 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { SearchResult } from '../components/SearchResult';
-import { SearchBar } from '../components/SearchBar';
-import { ArrayOfCities, City } from '../utils/api';
-import { fetchCities } from '../utils/api';
+import { SearchResult } from '../searchResult';
+import { SearchBar } from '../searchBar';
+import { ArrayOfCities, City } from '../../utils/api';
+import { fetchCities } from '../../utils/api';
 
 function SearchSection({ citiesHook }) {
   const [results, setResults] = useState<ArrayOfCities>([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAirData, City, AirData } from '../utils/api';
-import { calculateAQI } from '../utils/calculator';
+import { fetchAirData, City, AirData } from '../../utils/api';
+import { calculateAQI } from '../../utils/calculator';
 
 function CityCard({ city, citiesHook }) {
   const [data, setData] = useState<AirData>();

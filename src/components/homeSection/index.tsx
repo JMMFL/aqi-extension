@@ -1,6 +1,6 @@
 import React from 'react';
-import { CityCard } from '../components/CityCard';
-import { City } from '../utils/api';
+import { CityCard } from '../cityCard';
+import { City } from '../../utils/api';
 
 function HomeSection({ cities, citiesHook }) {
   return (
