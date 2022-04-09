@@ -25,7 +25,7 @@ function SearchSection({ citiesHook }) {
   };
 
   return (
-    <div>
+    <div id="search-section" className="hidden">
       <SearchBar onSearch={submitQuery} />
       {(results as any).map((city: City) => (
         <SearchResult city={city} citiesHook={citiesHook} />
