@@ -1,31 +1,37 @@
 import React from 'react';
-import { Tab } from './styled';
+import { HiHome, HiSearch } from 'react-icons/hi';
+import { Menu, Navigation } from './styled';
 
 function Tabs() {
   const changeTab = (event: any) => {
-    console.log(event.target);
-    const home = document.getElementById('home-section');
-    const search = document.getElementById('search-section');
+    const homeSec = document.getElementById('home-section');
+    const homeTab = document.getElementById('home-tab');
+    const searchSec = document.getElementById('search-section');
+    const searchTab = document.getElementById('search-tab');
     const clickedHome = event.target.id === 'home-tab';
 
     if (clickedHome) {
-      home.classList.remove('hidden');
-      search.classList.add('hidden');
+      homeSec.classList.remove('hidden');
+      homeTab.classList.remove('inactive');
+      searchSec.classList.add('hidden');
+      searchTab.classList.add('inactive');
     } else {
-      home.classList.add('hidden');
-      search.classList.remove('hidden');
+      homeSec.classList.add('hidden');
+      homeTab.classList.add('inactive');
+      searchSec.classList.remove('hidden');
+      searchTab.classList.remove('inactive');
     }
   };
 
   return (
-    <ul>
-      <li id="home-tab" onClick={changeTab}>
-        Home
-      </li>
-      <li id="search-tab" onClick={changeTab}>
-        Search
-      </li>
-    </ul>
+    <Navigation>
+      <Menu id="home-tab" onClick={changeTab}>
+        <HiHome />
+      </Menu>
+      <Menu className="inactive" id="search-tab" onClick={changeTab}>
+        <HiSearch />
+      </Menu>
+    </Navigation>
   );
 }
 

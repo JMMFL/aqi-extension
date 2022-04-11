@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  background-color: #f4f4f4;
 }
 
 *, *:before, *:after {
@@ -8,13 +9,20 @@ html {
 
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
   width: 375px;
   height: 475px;  
+  overflow-y: scroll;
 }
 
 .hidden {
   display: none;
+}
+
+.inactive {
+  color: white;
+  background-color: #c4c4c4 !important;
 }
