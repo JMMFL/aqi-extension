@@ -17,14 +17,14 @@ function Tabs() {
   };
 
   return (
-    <ul>
+    <Test>
       <li id="home-tab" onClick={changeTab}>
         Home
       </li>
       <li id="search-tab" onClick={changeTab}>
         Search
       </li>
-    </ul>
+    </Test>
   );
 }
 
