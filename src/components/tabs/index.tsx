@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tab } from './styled';
 
 function Tabs() {
   const changeTab = (event: any) => {
@@ -17,14 +18,14 @@ function Tabs() {
   };
 
   return (
-    <Test>
+    <ul>
       <li id="home-tab" onClick={changeTab}>
         Home
       </li>
       <li id="search-tab" onClick={changeTab}>
         Search
       </li>
-    </Test>
+    </ul>
   );
 }
 
