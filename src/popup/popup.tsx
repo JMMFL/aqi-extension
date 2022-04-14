@@ -12,6 +12,7 @@ const App: React.FC<{}> = () => {
   useEffect(() => {
     chrome.storage.local.get(['cities'], (response) => {
       let savedCities = response.cities ?? [];
+      console.log(savedCities);
       setCities(savedCities);
     });
   }, []);
