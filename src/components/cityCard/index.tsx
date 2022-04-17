@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAirData, City, AirData } from '../../utils/api';
+import { fetchAirData, AirData, City } from '../../utils/api';
 import { calculateAQI } from '../../utils/calculator';
 import { MdRemoveCircle } from 'react-icons/md';
 import {
   Button,
-  Category,
   Component,
   Components,
   Concentration,
-  Container,
+  FlexBox,
   Flag,
-  Name,
+  Location,
   Particle,
+  NameRow,
+  DataRow,
+  Grade,
 } from './styled';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
+import { assignGrade, Category } from '../../utils/grader';
 
 function CityCard({ city, citiesHook }) {
   const [data, setData] = useState<AirData>();
@@ -45,29 +48,33 @@ function CityCard({ city, citiesHook }) {
   };
 
   if (data) {
-    const category = data.main.aqi;
+    const grade = assignGrade(data.main.aqi as Category);
     const { o3, pm2_5, pm10 } = calculateAQI(data);
     const labels = ['o3', 'pm2.5', 'pm10'];
 
     return (
-      <Container>
-        <Flag>{getUnicodeFlagIcon(city.country)}</Flag>
-        <Name>{city.name}</Name>
-        <Category>{category}</Category>
-        <Components>
-          {[o3, pm2_5, pm10].map((component, index) => {
-            return (
-              <Component>
-                <Concentration>{component}</Concentration>
-                <Particle>{labels[index]}</Particle>
-              </Component>
-            );
-          })}
-        </Components>
-        <Button onClick={removeCity}>
-          <MdRemoveCircle />
-        </Button>
-      </Container>
+      <FlexBox>
+        <NameRow>
+          <Flag>{getUnicodeFlagIcon(city.country)}</Flag>
+          <Location>{city.name}</Location>
+        </NameRow>
+        <DataRow>
+          <Grade>{grade}</Grade>
+          <Components>
+            {[o3, pm2_5, pm10].map((component, index) => {
+              return (
+                <Component>
+                  <Concentration>{component}</Concentration>
+                  <Particle>{labels[index]}</Particle>
+                </Component>
+              );
+            })}
+          </Components>
+          <Button onClick={removeCity}>
+            <MdRemoveCircle />
+          </Button>
+        </DataRow>
+      </FlexBox>
     );
   } else {
     return <h1>Not yet</h1>;

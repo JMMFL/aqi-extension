@@ -1,23 +1,35 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  height: 80px;
+const FlexBox = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-flow: column;
   background: white;
   padding: 10px;
   margin-bottom: 10px;
 `;
 
-const Flag = styled.p`
-  font-size: 24px;
+const NameRow = styled.div`
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 5px;
 `;
 
-const Name = styled.p`
+const DataRow = styled.div`
+  display: flex;
+  flex-flow: row;
+`;
+
+const Flag = styled.p`
   font-size: 18px;
+  position: relative;
+  top: 2.5px;
+  margin-right: 8px;
+`;
+
+const Location = styled.p`
+  font-size: 24px;
   font-weight: bold;
-  width: 120px;
+  /* width: 120px; */
   margin-right: auto;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -54,18 +66,18 @@ const Component = styled.li`
   border: 1px solid black;
 `;
 
-const Category = styled.p`
+const Grade = styled.p`
   display: flex;
   flex-flow: column;
   justify-content: center;
   font-weight: bold;
   margin-right: 5px;
   padding: 5px;
-  width: 42px;
   border: 1px solid black;
+  text-transform: uppercase;
   height: 41px;
   text-align: center;
-  font-size: 32px;
+  font-size: 18px;
 `;
 
 const Concentration = styled.p`
@@ -80,13 +92,15 @@ const Particle = styled.p`
 `;
 
 export {
-  Container,
+  FlexBox,
   Flag,
-  Name,
+  Location,
   Button,
   Components,
-  Category,
+  Grade,
   Component,
   Concentration,
   Particle,
+  NameRow,
+  DataRow,
 };
