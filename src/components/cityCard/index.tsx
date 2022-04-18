@@ -64,12 +64,14 @@ function CityCard({ city, citiesHook }) {
               {grade}
             </Grade>
             {[o3, pm2_5, pm10].map((component, index) => {
-              return (
-                <Component>
-                  <Concentration>{component}</Concentration>
-                  <Particle>{labels[index]}</Particle>
-                </Component>
-              );
+              if (component > -1) {
+                return (
+                  <Component>
+                    <Concentration>{component}</Concentration>
+                    <Particle>{labels[index]}</Particle>
+                  </Component>
+                );
+              }
             })}
           </Components>
           <Button onClick={removeCity}>
