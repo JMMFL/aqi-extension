@@ -16,7 +16,7 @@ import {
   Grade,
 } from './styled';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
-import { assignGrade, Category } from '../../utils/grader';
+import { createLabel, Category } from '../../utils/labeller';
 
 function CityCard({ city, citiesHook }) {
   const [data, setData] = useState<AirData>();
@@ -48,7 +48,7 @@ function CityCard({ city, citiesHook }) {
   };
 
   if (data) {
-    const grade = assignGrade(data.main.aqi as Category);
+    const { grade, background, color } = createLabel(data.main.aqi as Category);
     const { o3, pm2_5, pm10 } = calculateAQI(data);
     const labels = ['o3', 'pm2.5', 'pm10'];
 
@@ -59,8 +59,10 @@ function CityCard({ city, citiesHook }) {
           <Location>{city.name}</Location>
         </NameRow>
         <DataRow>
-          <Grade>{grade}</Grade>
           <Components>
+            <Grade background={background} color={color}>
+              {grade}
+            </Grade>
             {[o3, pm2_5, pm10].map((component, index) => {
               return (
                 <Component>

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface GradeProps {
+  background: string;
+  color: string;
+}
+
 const FlexBox = styled.div`
   display: flex;
   flex-flow: column;
@@ -17,6 +22,7 @@ const NameRow = styled.div`
 const DataRow = styled.div`
   display: flex;
   flex-flow: row;
+  font-family: monospace;
 `;
 
 const Flag = styled.p`
@@ -60,18 +66,22 @@ const Component = styled.li`
   flex-flow: column;
   justify-content: center;
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 10px;
   padding: 5px;
-  width: 42px;
+  width: 55px;
   border: 1px solid black;
 `;
 
-const Grade = styled.p`
+const Grade = styled.p<GradeProps>`
+  background: ${(props) => props.background};
+  color: ${(props) => props.color};
+
   display: flex;
   flex-flow: column;
   justify-content: center;
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 10px;
+  width: 80px;
   padding: 5px;
   border: 1px solid black;
   text-transform: uppercase;
