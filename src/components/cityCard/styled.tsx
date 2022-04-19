@@ -101,6 +101,24 @@ const Particle = styled.p`
   font-size: 10px;
 `;
 
+const Skeletons = styled(FlexBox)`
+  display: block;
+  height: 95px;
+`;
+
+const Long = styled.div`
+  width: 90%;
+  background: lightgrey;
+  height: 15px;
+  border-radius: 30px;
+`;
+
+const Short = styled(Long)`
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+`;
+
 export {
   FlexBox,
   Flag,
@@ -113,4 +131,7 @@ export {
   Particle,
   NameRow,
   DataRow,
+  Skeletons,
+  Long,
+  Short,
 };

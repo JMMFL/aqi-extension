@@ -14,6 +14,9 @@ import {
   NameRow,
   DataRow,
   Grade,
+  Skeletons,
+  Long,
+  Short,
 } from './styled';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { createLabel, Category } from '../../utils/labeller';
@@ -81,7 +84,12 @@ function CityCard({ city, citiesHook }) {
       </FlexBox>
     );
   } else {
-    return <h1>Not yet</h1>;
+    return (
+      <Skeletons>
+        <Short></Short>
+        <Long></Long>
+      </Skeletons>
+    );
   }
 }
 
