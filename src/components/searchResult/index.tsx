@@ -11,6 +11,16 @@ function SearchResult({ city, citiesHook }) {
       saved.push(city);
       chrome.storage.local.set({ cities: saved });
       citiesHook(saved);
+
+      const homeSection = document.getElementById('home-section');
+      const homeTab = document.getElementById('home-tab');
+      const searchSection = document.getElementById('search-section');
+      const searchTab = document.getElementById('search-tab');
+
+      homeSection.classList.toggle('hidden');
+      homeTab.classList.toggle('inactive');
+      searchSection.classList.toggle('hidden');
+      searchTab.classList.toggle('inactive');
     });
   };
 
