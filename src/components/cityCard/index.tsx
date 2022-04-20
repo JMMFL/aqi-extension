@@ -21,7 +21,7 @@ import {
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { createLabel, Category } from '../../utils/labeller';
 
-function CityCard({ city, citiesHook }) {
+function CityCard({ cities, city, citiesHook }) {
   const [data, setData] = useState<AirData>();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function CityCard({ city, citiesHook }) {
     }
 
     getAirData(city);
-  }, []);
+  }, [cities]);
 
   const removeCity = () => {
     chrome.storage.local.get(['cities'], ({ cities }) => {

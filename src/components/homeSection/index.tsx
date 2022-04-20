@@ -7,7 +7,7 @@ function HomeSection({ cities, citiesHook }) {
   return (
     <Container id="home-section">
       {(cities as any).map((city: City) => (
-        <CityCard city={city} citiesHook={citiesHook} />
+        <CityCard cities={cities} city={city} citiesHook={citiesHook} />
       ))}
     </Container>
   );
