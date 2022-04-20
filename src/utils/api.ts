@@ -1,6 +1,7 @@
 const OPEN_WEATHER_API_KEY: string = '757946128f459261b0f030d6e88792db';
 
 interface City {
+  id?: string;
   name: string;
   state: string;
   country: string;

@@ -2,11 +2,12 @@ import React from 'react';
 
 function SearchResult({ city, citiesHook }) {
   const saveCity = () => {
-    chrome.storage.local.get(['cities'], (response) => {
-      const cities = response.cities ?? [];
-      cities.push(city);
-      chrome.storage.local.set({ cities });
-      citiesHook(cities);
+    chrome.storage.local.get(['cities'], ({ cities }) => {
+      const saved = cities ?? [];
+      city.id = `(${city.lat}, ${city.lon})`;
+      saved.push(city);
+      chrome.storage.local.set({ cities: saved });
+      citiesHook(saved);
     });
   };
 
