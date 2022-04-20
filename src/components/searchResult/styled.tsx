@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface Props {
+  color: string;
+  cursor: string;
+}
+
 const Card = styled.div`
   display: flex;
   flex-flow: row;
@@ -29,7 +34,10 @@ const State = styled.p`
   top: 2px;
 `;
 
-const Button = styled.button`
+const Button = styled.button<Props>`
+  color: ${(props) => props.color};
+  cursor: ${(props) => props.cursor};
+
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -37,9 +45,7 @@ const Button = styled.button`
   border: none;
   border-radius: 100px;
   width: 41px;
-  color: green;
   font-size: 26px;
-  cursor: pointer;
 `;
 
 export { Card, Flag, Name, State, Button };

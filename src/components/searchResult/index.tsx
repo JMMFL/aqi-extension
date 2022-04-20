@@ -1,13 +1,22 @@
-import React from 'react';
-import { MdAddCircle } from 'react-icons/md';
+import React, { useState } from 'react';
+import { MdAddCircle, MdCheckCircle } from 'react-icons/md';
 import { Button, Card, Flag, Name, State } from './styled';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 function SearchResult({ city, citiesHook }) {
+  const [show, setShow] = useState(true);
+  city.id = `(${city.lat}, ${city.lon})`;
+
+  chrome.storage.local.get(['cities'], ({ cities }) => {
+    const saved = cities ?? [];
+    const ids = saved.map((city: any) => city.id);
+    const isSaved = ids.includes(city.id);
+    setShow(!isSaved);
+  });
+
   const saveCity = () => {
     chrome.storage.local.get(['cities'], ({ cities }) => {
       const saved = cities ?? [];
-      city.id = `(${city.lat}, ${city.lon})`;
       saved.push(city);
       chrome.storage.local.set({ cities: saved });
       citiesHook(saved);
@@ -29,9 +38,15 @@ function SearchResult({ city, citiesHook }) {
       <Flag>{getUnicodeFlagIcon(city.country)}</Flag>
       <Name>{city.name}</Name>
       <State>{city.state ?? ''}</State>
-      <Button onClick={saveCity}>
-        <MdAddCircle />
-      </Button>
+      {show ? (
+        <Button onClick={saveCity} color="green" cursor="pointer">
+          <MdAddCircle />
+        </Button>
+      ) : (
+        <Button color="blue" cursor="default">
+          <MdCheckCircle />
+        </Button>
+      )}
     </Card>
   );
 }
