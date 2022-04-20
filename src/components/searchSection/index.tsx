@@ -3,6 +3,7 @@ import { SearchResult } from '../searchResult';
 import { SearchBar } from '../searchBar';
 import { ArrayOfCities, City } from '../../utils/api';
 import { fetchCities } from '../../utils/api';
+import { Container } from './styled';
 
 function SearchSection({ citiesHook }) {
   const [results, setResults] = useState<ArrayOfCities>([]);
@@ -25,12 +26,12 @@ function SearchSection({ citiesHook }) {
   };
 
   return (
-    <div id="search-section" className="hidden">
+    <Container id="search-section" className="hidden">
       <SearchBar onSearch={submitQuery} />
       {(results as any).map((city: City) => (
         <SearchResult city={city} citiesHook={citiesHook} />
       ))}
-    </div>
+    </Container>
   );
 }
 
