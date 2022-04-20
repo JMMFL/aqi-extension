@@ -1,4 +1,7 @@
 import React from 'react';
+import { MdAddCircle } from 'react-icons/md';
+import { Button, Card, Flag, Name, State } from './styled';
+import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 function SearchResult({ city, citiesHook }) {
   const saveCity = () => {
@@ -12,12 +15,14 @@ function SearchResult({ city, citiesHook }) {
   };
 
   return (
-    <div>
-      <h1>{city.name}</h1>
-      <h2>{city.country}</h2>
-      <h3>{city.state ?? ''}</h3>
-      <button onClick={saveCity}>Add Me</button>
-    </div>
+    <Card>
+      <Flag>{getUnicodeFlagIcon(city.country)}</Flag>
+      <Name>{city.name}</Name>
+      <State>{city.state ?? ''}</State>
+      <Button onClick={saveCity}>
+        <MdAddCircle />
+      </Button>
+    </Card>
   );
 }
 
