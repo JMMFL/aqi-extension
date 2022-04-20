@@ -36,6 +36,10 @@ const Name = styled.p`
   font-size: 24px;
   font-weight: bold;
   margin-right: 7px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 275px;
 `;
 
 const State = styled.p`
