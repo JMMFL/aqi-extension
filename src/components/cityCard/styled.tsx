@@ -17,6 +17,7 @@ const NameRow = styled.div`
   display: flex;
   flex-flow: row;
   margin-bottom: 5px;
+  width: 275px;
 `;
 
 const DataRow = styled.div`
@@ -36,10 +37,6 @@ const Name = styled.p`
   font-size: 24px;
   font-weight: bold;
   margin-right: 7px;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-  white-space: nowrap;
-  width: 275px;
 `;
 
 const State = styled.p`
