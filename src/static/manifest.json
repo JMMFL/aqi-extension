@@ -1,6 +1,6 @@
 {
-  "name": "Weather Extension",
-  "description": "Weather Extension in React!",
+  "name": "AQI Extension",
+  "description": "Check the air quality index of cities around the world.",
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
@@ -10,9 +10,8 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Weather Extension",
+    "default_title": "AQI Extension",
     "default_icon": "icon.png"
   },
-  "permissions": ["storage"],
-  "options_page": "options.html"
+  "permissions": ["storage"]
 }
