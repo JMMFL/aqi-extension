@@ -1,7 +1,7 @@
 {
   "name": "aqi-extension",
   "version": "1.0.0",
-  "description": "A chrome extension that checks the Air Quality Index of your location.",
+  "description": "A Chrome extension that provides Air Quality Index scores based on city queries.",
   "scripts": {
     "start": "webpack --watch --progress --config webpack.dev.js",
     "build": "webpack --watch --progress --config webpack.prod.js"
