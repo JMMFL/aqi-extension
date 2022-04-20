@@ -32,14 +32,18 @@ const Flag = styled.p`
   margin-right: 8px;
 `;
 
-const Location = styled.p`
+const Name = styled.p`
   font-size: 24px;
   font-weight: bold;
-  /* width: 120px; */
-  margin-right: auto;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  margin-right: 7px;
+`;
+
+const State = styled.p`
+  font-size: 12px;
+  text-transform: uppercase;
+  align-self: center;
+  position: relative;
+  top: 2px;
 `;
 
 const Button = styled.button`
@@ -122,7 +126,8 @@ const Short = styled(Long)`
 export {
   FlexBox,
   Flag,
-  Location,
+  Name,
+  State,
   Button,
   Components,
   Grade,

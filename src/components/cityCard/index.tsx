@@ -9,7 +9,7 @@ import {
   Concentration,
   FlexBox,
   Flag,
-  Location,
+  Name,
   Particle,
   NameRow,
   DataRow,
@@ -17,6 +17,7 @@ import {
   Skeletons,
   Long,
   Short,
+  State,
 } from './styled';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { createLabel, Category } from '../../utils/labeller';
@@ -52,7 +53,8 @@ function CityCard({ cities, city, citiesHook }) {
       <FlexBox>
         <NameRow>
           <Flag>{getUnicodeFlagIcon(city.country)}</Flag>
-          <Location>{city.name}</Location>
+          <Name>{city.name}</Name>
+          <State>{city.state ?? ''}</State>
         </NameRow>
         <DataRow>
           <Components>
